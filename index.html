@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoachAI — Investor Document</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0c0e;
+    --surface: #111214;
+    --surface2: #17191d;
+    --border: #222428;
+    --accent: #e8ff5a;
+    --accent2: #ff6b35;
+    --accent3: #5aadff;
+    --text: #e8e9eb;
+    --muted: #6b6f7a;
+    --danger: #ff4545;
+    --success: #3ddc84;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* ── GRID NOISE BACKGROUND ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232,255,90,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,255,90,0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 32px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 48px;
+    margin-bottom: 64px;
+  }
+
+  .doc-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .doc-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--muted);
+    display: inline-block;
+  }
+
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(42px, 7vw, 72px);
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  h1 em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .tagline {
+    font-size: 16px;
+    color: var(--muted);
+    margin-top: 16px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .meta-chip {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+  }
+
+  .meta-chip.hot {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-bottom: 72px;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-number {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  h2 .icon {
+    width: 32px;
+    height: 32px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    margin-top: 28px;
+  }
+
+  p {
+    color: #b8bac4;
+    margin-bottom: 14px;
+    max-width: 720px;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+
+  .card:hover { border-color: #333640; }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card-title .badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+  }
+
+  .badge-must   { background: rgba(232,255,90,0.12); color: var(--accent); }
+  .badge-nice   { background: rgba(90,173,255,0.12); color: var(--accent3); }
+  .badge-later  { background: rgba(107,111,122,0.15); color: var(--muted); }
+  .badge-risk   { background: rgba(255,69,69,0.12); color: var(--danger); }
+  .badge-fix    { background: rgba(61,220,132,0.12); color: var(--success); }
+
+  /* ── GRID LAYOUTS ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* ── CALLOUT BLOCKS ── */
+  .callout {
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    background: rgba(232,255,90,0.04);
+    border-radius: 0 4px 4px 0;
+    margin: 20px 0;
+  }
+
+  .callout.danger {
+    border-color: var(--danger);
+    background: rgba(255,69,69,0.04);
+  }
+
+  .callout.info {
+    border-color: var(--accent3);
+    background: rgba(90,173,255,0.04);
+  }
+
+  .callout p {
+    margin: 0;
+    color: var(--text);
+    font-size: 14px;
+  }
+
+  /* ── QUOTE / UVP ── */
+  .uvp-block {
+    text-align: center;
+    padding: 48px 32px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .uvp-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center top, rgba(232,255,90,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .uvp-block .quote {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(22px, 4vw, 36px);
+    line-height: 1.3;
+    color: var(--text);
+    max-width: 600px;
+    margin: 0 auto 16px;
+  }
+
+  .uvp-block .sub {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ── TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  th {
+    text-align: left;
+    padding: 10px 16px;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: #b8bac4;
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td.label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    width: 30%;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 28px;
+  }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+
+  .tl-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  /* ── RATING STARS ── */
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .rating-label {
+    width: 200px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .stars {
+    display: flex;
+    gap: 3px;
+  }
+
+  .star { width: 10px; height: 10px; border-radius: 1px; }
+  .star.on  { background: var(--accent); }
+  .star.off { background: var(--border); }
+
+  /* ── LIST ITEMS ── */
+  ul { list-style: none; padding: 0; }
+
+  ul li {
+    padding: 6px 0 6px 20px;
+    position: relative;
+    color: #b8bac4;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  ul li:last-child { border-bottom: none; }
+
+  ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 64px 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .footer strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ── COMPETITOR CHIP ── */
+  .comp-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .comp-row:last-child { border-bottom: none; }
+
+  .comp-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    color: var(--text);
+    min-width: 150px;
+    font-size: 13px;
+  }
+
+  .comp-weak {
+    color: var(--danger);
+    font-size: 12px;
+    flex: 1;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="doc-label">Investor Document · Confidential · 2025</div>
+    <h1>Placement<em>Coach</em></h1>
+    <p class="tagline">AI-Powered Career Intelligence for Indian Students</p>
+    <div class="meta-row">
+      <span class="meta-chip hot">Seed Stage</span>
+      <span class="meta-chip">EdTech · CareerTech</span>
+      <span class="meta-chip">India · B2C → B2B2C</span>
+      <span class="meta-chip">MVP: 7–10 Days</span>
+    </div>
+  </header>
+
+
+  <!-- 1. PROBLEM -->
+  <div class="section">
+    <div class="section-number">01 / Problem Statement</div>
+    <h2><span class="icon">⚠</span> The Problem</h2>
+
+    <p>Every year, <strong style="color:var(--text)">5+ million Indian college students</strong> enter placement season with almost zero reliable guidance. They rely on seniors, YouTube, and WhatsApp forwards — fragmented, outdated, and not personalized.</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🧠 Emotional Pain</div>
+        <ul>
+          <li>"Mera CGPA 7.2 hai — kya milega mujhe?"</li>
+          <li>Constant comparison with peers</li>
+          <li>Fear of being left behind</li>
+          <li>No one to give honest feedback</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">📋 Practical Pain</div>
+        <ul>
+          <li>Resume gets rejected — no idea why</li>
+          <li>No structured upskilling path</li>
+          <li>Students apply blindly to 50+ companies</li>
+          <li>No feedback loop after rejection</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Why Existing Solutions Fail</h3>
+    <div class="card">
+      <ul>
+        <li>Resume builders (Novoresume, Zety) — generic, not India-aware, no ATS context for Indian JDs</li>
+        <li>Career counsellors — expensive (₹5,000–₹20,000), opinionated, not scalable</li>
+        <li>College TPOs — under-resourced, outdated industry connections, no personalization</li>
+        <li>LinkedIn/YouTube — content overload, no personalized direction</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <p><strong>Core Insight:</strong> Students don't lack information — they lack personalized, actionable direction. That gap is the product.</p>
+    </div>
+  </div>
+
+
+  <!-- 2. ICP -->
+  <div class="section">
+    <div class="section-number">02 / Ideal Customer Profile</div>
+    <h2><span class="icon">👤</span> Target Users</h2>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">Primary User</div>
+        <p style="margin:0;font-size:13px;">2nd–4th year B.Tech / BCA / MBA students in India. Tier 1, 2 &amp; 3 colleges. Age 19–24. Actively preparing for placements in next 3–12 months.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Secondary User</div>
+        <p style="margin:0;font-size:13px;">Fresh graduates (0–1 yr). Lateral switchers (1–3 yr exp). Students seeking internships. Bootcamp grads with no college network.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Mindset</div>
+        <p style="margin:0;font-size:13px;">Aspirational. Anxious. Mobile-first. Influenced by peers. Price-sensitive but pays for outcomes. Active on WhatsApp, Instagram, LinkedIn.</p>
+      </div>
+    </div>
+
+    <h3>The Behavioral Trigger</h3>
+    <p>The product must catch users at peak anxiety: after a rejection, before placement season starts, or when a friend lands an offer. These are the moments they will sign up, share, and pay.</p>
+
+    <div class="callout info">
+      <p><strong>Key insight:</strong> Tier 2 and Tier 3 college students are chronically underserved. They have high placement anxiety but near-zero access to premium guidance. This is the core market — not IITians who already have a network.</p>
+    </div>
+  </div>
+
+
+  <!-- 3. SOLUTION -->
+  <div class="section">
+    <div class="section-number">03 / Solution</div>
+    <h2><span class="icon">💡</span> What We're Building</h2>
+
+    <div class="uvp-block">
+      <div class="quote">"Don't just predict your chances — improve them."</div>
+      <div class="sub">PlacementCoach analyzes your profile, identifies the gap, and builds you a personalized roadmap to get placed.</div>
+    </div>
+
+    <p style="margin-top:24px;">PlacementCoach is an <strong style="color:var(--text)">AI-driven career improvement platform</strong>. A student uploads their resume, enters their CGPA and skills, and receives: a realistic placement probability, an ATS resume score, and a week-by-week action plan to close the gap.</p>
+
+    <div class="callout">
+      <p><strong>The transformation:</strong> A confused 3rd-year student with a 7.0 CGPA walks in. They leave with a clear 6-week roadmap — which projects to build, which topics to study, which companies to target. They come back weekly to track progress.</p>
+    </div>
+  </div>
+
+
+  <!-- 4. FEATURES -->
+  <div class="section">
+    <div class="section-number">04 / Core Features (MVP)</div>
+    <h2><span class="icon">🧩</span> What We Ship First</h2>
+
+    <div class="card">
+      <div class="card-title">📊 Placement Reality Check <span class="badge badge-must">MUST HAVE</span></div>
+      <p style="margin:0 0 10px;font-size:13px;">User enters CGPA, college tier, skills. Gets a probabilistic score (not a hard number — shown as a range like 40–60%) broken down by role type: SDE, Data Analyst, Product, Core. Also shows: "Students with similar profiles got X, Y, Z."</p>
+      <p style="margin:0;font-size:12px;color:var(--muted);">Why it works: hooks the user emotionally. Creates the "oh no, I need to fix this" moment.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🧾 AI Resume Analyzer <span class="badge badge-must">MUST HAVE</span></div>
+      <p style="margin:0 0 10px;font-size:13px;">Upload resume (PDF). Get: ATS compatibility score, missing keywords per job role, section-by-section feedback (weak summary, missing metrics, formatting issues), and rewrite suggestions for bullet points.</p>
+      <p style="margin:0;font-size:12px;color:var(--muted);">Why it works: first tool that gives users instant, honest feedback. Builds trust fast.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🎯 Personalized Action Plan <span class="badge badge-must">MUST HAVE</span></div>
+      <p style="margin:0 0 10px;font-size:13px;">Based on gap analysis: generates a 4–8 week roadmap. "Learn Arrays + Graphs (Week 1–2). Build a REST API project (Week 3). Apply to these 10 companies in Week 6." Role-specific, realistic, not generic.</p>
+      <p style="margin:0;font-size:12px;color:var(--muted);">Why it works: this is what users actually pay for. It replaces a ₹10,000 career counsellor.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">📈 Progress Tracker <span class="badge badge-nice">NICE TO HAVE V1.1</span></div>
+      <p style="margin:0 0 10px;font-size:13px;">Check off completed milestones. Re-score resume as skills improve. See your placement probability trend upward. Weekly email nudges.</p>
+      <p style="margin:0;font-size:12px;color:var(--muted);">Why it works: turns a one-time tool into a habit. Critical for retention and paid conversion.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">🏆 Shareable Score Card <span class="badge badge-nice">VIRAL LEVER</span></div>
+      <p style="margin:0 0 10px;font-size:13px;">One-tap shareable card: "My PlacementCoach score: 68% → I'm working on it. Check yours →". Optimized for WhatsApp and Instagram Stories.</p>
+      <p style="margin:0;font-size:12px;color:var(--muted);">Why it works: organic growth loop. Students are competitive. They will share this.</p>
+    </div>
+  </div>
+
+
+  <!-- 5. UVP -->
+  <div class="section">
+    <div class="section-number">05 / Unique Value Proposition</div>
+    <h2><span class="icon">🏆</span> Why Us</h2>
+
+    <table>
+      <tr>
+        <th>Dimension</th>
+        <th>Others</th>
+        <th>PlacementCoach</th>
+      </tr>
+      <tr>
+        <td class="label">India-Specific</td>
+        <td>Generic / US-focused</td>
+        <td style="color:var(--success);">CGPA, tier, Indian JD data</td>
+      </tr>
+      <tr>
+        <td class="label">Resume Analysis</td>
+        <td>Template only</td>
+        <td style="color:var(--success);">ATS + role-specific keywords</td>
+      </tr>
+      <tr>
+        <td class="label">Action Plan</td>
+        <td>None</td>
+        <td style="color:var(--success);">Week-by-week personalized</td>
+      </tr>
+      <tr>
+        <td class="label">Progress Tracking</td>
+        <td>None</td>
+        <td style="color:var(--success);">Re-score over time</td>
+      </tr>
+      <tr>
+        <td class="label">Pricing</td>
+        <td>₹0 or ₹5,000+</td>
+        <td style="color:var(--success);">₹149–₹299/month</td>
+      </tr>
+    </table>
+
+    <div class="callout" style="margin-top:24px;">
+      <p><strong>Unfair Advantage:</strong> Every competitor does exactly one thing — resume builder OR job matcher OR learning roadmap. We do all three in one flow, powered by India-specific data. No one has built this combination for Tier 2/3 students at sub-₹300 pricing.</p>
+    </div>
+  </div>
+
+
+  <!-- 6. MONETIZATION -->
+  <div class="section">
+    <div class="section-number">06 / Business Model</div>
+    <h2><span class="icon">💰</span> How We Make Money</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🆓 Free Tier</div>
+        <ul>
+          <li>Basic placement probability score</li>
+          <li>Resume ATS score (no suggestions)</li>
+          <li>1 action plan preview (blurred after 3 items)</li>
+          <li>Shareable score card</li>
+        </ul>
+        <p style="margin-top:12px;font-size:12px;color:var(--muted);">Goal: virality + top-of-funnel. Not monetization.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">💸 Pro Tier — ₹149–₹299/mo</div>
+        <ul>
+          <li>Full resume suggestions + rewrites</li>
+          <li>Complete personalized roadmap</li>
+          <li>Role-specific company targeting</li>
+          <li>Progress tracking + re-scoring</li>
+          <li>Weekly email nudges</li>
+        </ul>
+        <p style="margin-top:12px;font-size:12px;color:var(--muted);">Priced below a single coaching session. Easy to say yes to.</p>
+      </div>
+    </div>
+
+    <h3>Future Revenue Streams (6–18 months)</h3>
+    <div class="card">
+      <ul>
+        <li><strong style="color:var(--text);">College B2B</strong> — Sell dashboard to TPO offices. ₹30k–₹2L per college per year. 50 colleges = ₹50L–₹1Cr ARR.</li>
+        <li><strong style="color:var(--text);">Recruiter Access</strong> — Let companies post roles + browse verified student profiles. CPC or flat listing fee.</li>
+        <li><strong style="color:var(--text);">Course Affiliates</strong> — Recommend Striver/Apna College/Scaler based on gaps. Earn 10–20% commission.</li>
+        <li><strong style="color:var(--text);">Resume/Interview Coaching</strong> — Book 1:1 sessions with vetted mentors. 20% platform cut.</li>
+      </ul>
+    </div>
+
+    <div class="callout">
+      <p><strong>Unit Economics (Rough):</strong> If 10,000 free users → 5% convert to Pro at ₹199/mo = ₹9.95L/month. Cost of GPT API per user ≈ ₹2–5. Margin is healthy from Day 1.</p>
+    </div>
+  </div>
+
+
+  <!-- 7. GTM -->
+  <div class="section">
+    <div class="section-number">07 / Go-To-Market</div>
+    <h2><span class="icon">🚀</span> First 1000 Users</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-label">Week 1–2 · Zero Budget</div>
+        <div class="card" style="margin-left:0;">
+          <ul>
+            <li>Post in 20–30 college WhatsApp placement groups personally</li>
+            <li>Share on Reddit: r/indianstudents, r/cscareerquestions_india</li>
+            <li>Find 5 campus ambassadors (give them Pro free for 3 months)</li>
+            <li>Post founder story on LinkedIn — "Why I built this" (authentic &gt; polished)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-label">Week 3–4 · Viral Loop</div>
+        <div class="card" style="margin-left:0;">
+          <ul>
+            <li>Launch shareable score card — "Check your score, share it"</li>
+            <li>Reach out to 10 college seniors with followings (&gt;500 LinkedIn)</li>
+            <li>Post a "roast my resume" thread on Twitter/X to drive awareness</li>
+            <li>Target engineering college Facebook groups (still active in Tier 2/3)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-label">Month 2 · Content Engine</div>
+        <div class="card" style="margin-left:0;">
+          <ul>
+            <li>"We analyzed 1,000 resumes — here's what Tier 2 students get wrong" — LinkedIn post</li>
+            <li>YouTube Shorts: "Why your CGPA isn't the problem" (3–5 short videos)</li>
+            <li>Approach 2–3 placement-focused YouTubers for a collab/shoutout</li>
+            <li>Free webinar: "How to improve your placement chances in 30 days"</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-label">Month 3 · College Channels</div>
+        <div class="card" style="margin-left:0;">
+          <ul>
+            <li>Partner with 3–5 colleges for free TPO access → case study → more colleges</li>
+            <li>Offer college placement cells a free dashboard in exchange for student sign-ups</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 8. TECH -->
+  <div class="section">
+    <div class="section-number">08 / Tech Architecture</div>
+    <h2><span class="icon">⚙</span> How We Build It</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🖥 Frontend</div>
+        <ul>
+          <li>Next.js 14 (App Router)</li>
+          <li>Tailwind CSS + shadcn/ui</li>
+          <li>Vercel deployment (free tier → scale)</li>
+          <li>Mobile-first (most users on phone)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🔧 Backend</div>
+        <ul>
+          <li>FastAPI (Python) — REST API</li>
+          <li>JWT auth (no OAuth complexity at start)</li>
+          <li>PDF resume parsing: pdfminer / pypdf2</li>
+          <li>Render.com (free → $7/mo starter)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🤖 AI / ML Layer</div>
+        <ul>
+          <li>GPT-4o (OpenAI) for resume analysis + action plan generation</li>
+          <li>Custom prompt engineering — India-specific context baked in</li>
+          <li>Rule-based scoring for placement probability (ML later)</li>
+          <li>spaCy / Regex for keyword extraction from JDs</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🗄 Database</div>
+        <ul>
+          <li>PostgreSQL (Supabase — free 500MB)</li>
+          <li>Redis (for caching resume scores)</li>
+          <li>S3-compatible (Supabase Storage for PDFs)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <p><strong>Team split (2 founders):</strong> Founder 1 → Frontend + Backend + deployment. Founder 2 (ML) → Prompt engineering, scoring model, resume NLP. Both use shared Supabase instance.</p>
+    </div>
+  </div>
+
+
+  <!-- 9. DATA STRATEGY -->
+  <div class="section">
+    <div class="section-number">09 / Data Strategy</div>
+    <h2><span class="icon">📊</span> Data Moat (Critical)</h2>
+
+    <p>This is the most important long-term section. The product that owns the most India-specific placement data wins. Here is how to build that moat.</p>
+
+    <div class="card">
+      <div class="card-title">Phase 1 · Bootstrap (Month 1–2)</div>
+      <ul>
+        <li>Kaggle placement datasets (starting point only — generic)</li>
+        <li>Manually scrape 500–1000 job descriptions from Naukri, LinkedIn, Internshala</li>
+        <li>Survey 100 recent placed/unplaced students: CGPA, skills, company, outcome</li>
+        <li>Use synthetic data + GPT-4 to augment thin categories</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Phase 2 · User Data (Month 3–6)</div>
+      <ul>
+        <li>Every user who submits a resume contributes anonymized signal</li>
+        <li>Post-placement survey: "Did you get placed? Which company?" → ground truth</li>
+        <li>A/B test action plan recommendations → measure conversion</li>
+        <li>Build India-specific keyword dictionary per role/domain</li>
+      </ul>
+    </div>
+
+    <div class="callout danger">
+      <p><strong>Important:</strong> Be transparent about data use in privacy policy. Never sell individual data. The moat comes from aggregate patterns, not individual profiles. Make users trust you — that is the product.</p>
+    </div>
+  </div>
+
+
+  <!-- 10. COMPETITIVE -->
+  <div class="section">
+    <div class="section-number">10 / Competitive Landscape</div>
+    <h2><span class="icon">🥊</span> Why We Win</h2>
+
+    <div class="card">
+      <div class="comp-row">
+        <div class="comp-name">Resumeworded</div>
+        <div class="comp-weak">US-focused. No India JDs. No action plan. No placement prediction. $19/mo — too expensive for Indian students.</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-name">Internshala</div>
+        <div class="comp-weak">Job board only. No resume feedback, no personalized roadmap, no skill gap analysis. Pure listing platform.</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-name">Scaler / upGrad</div>
+        <div class="comp-weak">Course-first model. ₹2–5L upfront. Can't afford it. No placement intelligence — just sell you a course.</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-name">LinkedIn Premium</div>
+        <div class="comp-weak">Networking-focused. No resume analysis for Indian JDs. ₹2,500/mo. Overkill for a 3rd-year student.</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-name">College TPO</div>
+        <div class="comp-weak">Understaffed. Generic advice. No data, no personalization. Depends on TPO's personal judgment. Not scalable.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><strong>Our unfair advantage:</strong> India-specific data + combined resume + roadmap + tracking in one product + priced for real students (₹149/mo). No competitor has all four.</p>
+    </div>
+  </div>
+
+
+  <!-- 11. RISKS -->
+  <div class="section">
+    <div class="section-number">11 / Risks & Mitigation</div>
+    <h2><span class="icon">⚠</span> What Can Kill Us</h2>
+
+    <div class="card">
+      <div class="card-title">❌ Risk 1: Bad Predictions Destroy Trust <span class="badge badge-risk">HIGH</span></div>
+      <p style="font-size:13px;margin:8px 0 4px;">If we predict "70% chance of getting placed" and the user doesn't, they feel cheated.</p>
+      <p style="font-size:12px;color:var(--success);">Fix → Always show ranges ("40–65%"), never absolutes. Add disclaimer. Frame it as "current readiness score" not "prediction." Shift messaging to improvement, not prophecy.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">❌ Risk 2: One-Time Use / Low Retention <span class="badge badge-risk">HIGH</span></div>
+      <p style="font-size:13px;margin:8px 0 4px;">User checks score, gets action plan, disappears. Never pays.</p>
+      <p style="font-size:12px;color:var(--success);">Fix → Progress tracker + weekly nudges creates a habit. Re-scoring resume as skills improve shows tangible progress. Email drip: "Your score improved 8 points this week."</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">❌ Risk 3: GPT Costs Too High <span class="badge badge-risk">MEDIUM</span></div>
+      <p style="font-size:13px;margin:8px 0 4px;">At scale, GPT-4o per-resume cost adds up. Free users could drain the budget.</p>
+      <p style="font-size:12px;color:var(--success);">Fix → Rate-limit free tier. Cache action plans by profile similarity. Move toward fine-tuned smaller model (Mistral) once dataset is large enough.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">❌ Risk 4: Ethical / Psychological Harm <span class="badge badge-risk">MEDIUM</span></div>
+      <p style="font-size:13px;margin:8px 0 4px;">Telling a student "low placement probability" could cause anxiety or demotivation.</p>
+      <p style="font-size:12px;color:var(--success);">Fix → Always follow a score with an action. Never show a red number without a green roadmap next to it. UX framing matters: "Here's how to improve" not "You're behind."</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">❌ Risk 5: Market Education Needed <span class="badge badge-risk">LOW</span></div>
+      <p style="font-size:13px;margin:8px 0 4px;">Students may not see the value of paying ₹149 for career guidance vs. free YouTube.</p>
+      <p style="font-size:12px;color:var(--success);">Fix → Free tier must be genuinely useful and create a "wow" moment. Trust is built before asking for money. The score card + resume ATS score is the hook.</p>
+    </div>
+  </div>
+
+
+  <!-- 12. ROADMAP -->
+  <div class="section">
+    <div class="section-number">12 / Execution Roadmap</div>
+    <h2><span class="icon">📅</span> What We Build When</h2>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-label">Days 1–2 · Foundation</div>
+        <div class="card" style="margin-left:0;">
+          <ul>
+            <li>Next.js project setup + Tailwind</li>
+            <li>Landing page with email waitlist capture</li>
+            <li>Supabase DB + auth setup</li>
+            <li>FastAPI skeleton with /health endpoint</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-label">Days 3–4 · Core Input Flow</div>
+        <div class="card" style="margin-left:0;">
+          <ul>
+            <li>Student profile form (CGPA, college tier, skills, target role)</li>
+            <li>PDF resume upload (Supabase Storage)</li>
+            <li>Resume text extraction (pdfminer)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-label">Days 5–6 · Intelligence Layer</div>
+        <div class="card" style="margin-left:0;">
+          <ul>
+            <li>Rule-based placement probability scorer (v1)</li>
+            <li>GPT-4o prompt for resume feedback + action plan</li>
+            <li>ATS keyword matching logic</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-label">Day 7–8 · Dashboard + Ship</div>
+        <div class="card" style="margin-left:0;">
+          <ul>
+            <li>Results dashboard (score + resume feedback + roadmap)</li>
+            <li>Shareable score card (OG image generation)</li>
+            <li>Deploy: Vercel + Render</li>
+            <li>Share in 10 WhatsApp groups — collect feedback</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-label">Days 9–30 · Validation + Iteration</div>
+        <div class="card" style="margin-left:0;">
+          <ul>
+            <li>Talk to 50 users — what's useful, what's missing?</li>
+            <li>Add progress tracker (Week 3)</li>
+            <li>Launch Pro tier: Razorpay integration (Week 3–4)</li>
+            <li>Target: 500 sign-ups, 25 paid users, ₹5,000 MRR</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-label">Month 2–3 · Growth</div>
+        <div class="card" style="margin-left:0;">
+          <ul>
+            <li>Content strategy: LinkedIn + YouTube Shorts</li>
+            <li>Campus ambassador program (10 colleges)</li>
+            <li>Improve ML model with real user data</li>
+            <li>Target: 3,000 users, 150 paid, ₹30,000 MRR</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 13. VISION -->
+  <div class="section">
+    <div class="section-number">13 / The Big Picture</div>
+    <h2><span class="icon">🔭</span> Where This Goes</h2>
+
+    <div class="uvp-block">
+      <div class="quote">The default career intelligence layer for every Indian student.</div>
+      <div class="sub">Not a placement tool. An operating system for your career — from Day 1 of college to your first job.</div>
+    </div>
+
+    <div class="grid-3" style="margin-top:24px;">
+      <div class="card">
+        <div class="card-title">Year 1</div>
+        <p style="font-size:13px;margin:0;">10,000 students. ₹10L MRR. 50+ college partnerships. Proof of concept for B2B.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Year 2–3</div>
+        <p style="font-size:13px;margin:0;">Expand to MBA, non-engineering verticals. Recruiter marketplace. ₹1Cr+ ARR. Series A territory.</p>
+      </div>
+      <div class="card">
+        <div class="card-title">Year 4–5</div>
+        <p style="font-size:13px;margin:0;">India's trusted career graph — the richest dataset linking student profiles to placement outcomes. Platform play. Regional languages. 1M+ users.</p>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:24px;">
+      <p><strong>Honest founder note:</strong> This is not a billion-dollar idea on Day 1 and that's fine. It's a real problem, a real market, a real product you can ship in 10 days. Start there. The vision earns its right to exist after the first 100 users tell you it changed something for them.</p>
+    </div>
+  </div>
+
+  <!-- RATING -->
+  <div class="section">
+    <div class="section-number">Appendix / Idea Scorecard</div>
+    <h2><span class="icon">⭐</span> Honest Ratings</h2>
+    <div class="card">
+      <div class="rating-row">
+        <div class="rating-label">Problem Severity</div>
+        <div class="stars">
+          <div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div>
+        </div>
+        <span style="font-size:12px;color:var(--muted);">5/5 — Real, daily, emotional</span>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">Market Size (India)</div>
+        <div class="stars">
+          <div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div>
+        </div>
+        <span style="font-size:12px;color:var(--muted);">5/5 — 5M+ students/year</span>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">Virality Potential</div>
+        <div class="stars">
+          <div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star off"></div>
+        </div>
+        <span style="font-size:12px;color:var(--muted);">4/5 — Score sharing works</span>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">Monetization (improved)</div>
+        <div class="stars">
+          <div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star off"></div>
+        </div>
+        <span style="font-size:12px;color:var(--muted);">4/5 — B2C + B2B2C path</span>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">Execution Complexity</div>
+        <div class="stars">
+          <div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star off"></div><div class="star off"></div>
+        </div>
+        <span style="font-size:12px;color:var(--muted);">3/5 — Manageable 2-founder</span>
+      </div>
+      <div class="rating-row">
+        <div class="rating-label">Defensibility (long-term)</div>
+        <div class="stars">
+          <div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star on"></div><div class="star off"></div>
+        </div>
+        <span style="font-size:12px;color:var(--muted);">4/5 — Data moat if executed right</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p><strong>PlacementCoach</strong> · Investor Document · Confidential</p>
+    <p style="margin-top:8px;">Built for Indian students. Priced for real life. Designed to improve, not just predict.</p>
+  </div>
+
+</div>
+</body>
+</html>
